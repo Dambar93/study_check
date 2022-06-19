@@ -1,0 +1,37 @@
+magephp:
+    log_dir: /var/www/html/mage-logs
+    environments:
+        production:
+            ssh:
+                port: 22
+                flags: -q -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /var/www/html/deployment/key
+                timeout: 60
+            user: root
+            # branch: master
+            from: ./
+            symlink: laravel
+            host_path: /var/www/
+            releases: 10
+            exclude:
+                - ./var/cache/*
+                - ./var/log/*
+                - ./web/app_dev.php
+                - ./node_modules
+                - ./storage/app/
+                - ./storage/logs/
+                - ./storage/framework/cache/*
+                - ./storage/framework/sessions/*
+                - ./storage/framework/views/*
+            hosts:
+                - 188.166.99.32
+            pre-deploy:
+                - composer/install
+                - composer/dump-autoload
+            on-deploy:
+                # - symfony/cache-warmup: { env: 'dev' }
+                # - symfony/assets-install: { env: 'dev' }
+                - fs/copy: { from: '/var/www/shared/.env', to: '.env' }
+                - exec: {cmd: 'php8.1 artisan migrate --force', desc:'Migrate database'}
+            on-release:
+            post-release:
+            post-deploy:

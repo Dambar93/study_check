@@ -1,0 +1,5 @@
+[2022-06-15T18:21:19.256795+00:00] magephp.DEBUG: Environment: production [] []
+[2022-06-15T18:21:19.258360+00:00] magephp.INFO: ssh -p 22 -q -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /var/www/html/deployment/key root@188.166.99.32 "ls -1 /var/www/myapp/releases" [] []
+[2022-06-15T18:21:21.084139+00:00] magephp.DEBUG: 20220615174836 20220615175034 20220615175753 20220615180832 20220615181311 20220615181707  [] []
+[2022-06-15T18:21:21.084499+00:00] magephp.INFO: ssh -p 22 -q -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /var/www/html/deployment/key root@188.166.99.32 "readlink -f /var/www/myapp/current" [] []
+[2022-06-15T18:21:22.967760+00:00] magephp.DEBUG: /var/www/myapp/releases/20220615181707  [] []
